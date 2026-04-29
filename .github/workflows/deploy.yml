@@ -19,4 +19,4 @@ jobs:
 
       - name: Deploy via SCP
         run: |
-          scp -P 22 -o StrictHostKeyChecking=no -r ./* hetperron@hetperron.tempurl.host:/var/www/html/wp-content/themes/
+          scp -P 22 -o StrictHostKeyChecking=no -r ./* hetperron@hetperron.tempurl.host:/site/public_html/wp-content/themes/
