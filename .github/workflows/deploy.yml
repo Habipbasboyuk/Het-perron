@@ -17,6 +17,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
 
-      - name: Deploy via SCP
+     - name: Deploy via SCP
         run: |
-          scp -P 22 -o StrictHostKeyChecking=no -r ./* hetperron@hetperron.tempurl.host:/site/public_html/wp-content/themes/
+          scp -v -P 22 -o StrictHostKeyChecking=no -o BatchMode=yes -r . hetperron@hetperron.tempurl.host:/site/public_html/wp-content/themes/
