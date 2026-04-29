@@ -1,4 +1,4 @@
-name: Deploy naar WPMU DEV
+name: Deploy Themes naar WPMU DEV
 on:
   push:
     branches:
@@ -19,8 +19,8 @@ jobs:
 
       - name: Deploy Themes via rsync
         run: |
-          rsync -az --delete \
+          rsync -e "ssh -p 22 -o StrictHostKeyChecking=no -o BatchMode=yes" \
+          -az --delete --rsync-path="rsync" \
           --exclude='.git*' \
           --exclude='.github*' \
-          -e "ssh -p 22 -o StrictHostKeyChecking=no -o BatchMode=yes" \
           ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/wp-content/themes/
