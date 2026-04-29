@@ -17,10 +17,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
 
-      - name: Deploy met rsync naar Het Perron
+      - name: Deploy Themes via rsync
         run: |
           rsync -avz --delete \
           --exclude='.git*' \
           --exclude='.github*' \
-          -e "ssh -p 22" \
-          ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/wp-content/
+          -e "ssh -p 22 -o StrictHostKeyChecking=no -o BatchMode=yes" \
+          ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/wp-content/themes/
